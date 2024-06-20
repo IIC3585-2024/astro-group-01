@@ -1,0 +1,25 @@
+---
+import  MovieCard  from "../components/MovieCard.svelte";
+
+const movie = {
+  name: 'Inception',
+  description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
+  categories: ["Acción", "Aventura", "Sci-fi"],
+  poster: 'https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg'
+};
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Astro</h1>
+
+		<MovieCard client:only="svelte" name={movie.name} description={movie.description} poster={movie.poster} categories={movie.categories}></MovieCard>
+	</body>
+</html>
