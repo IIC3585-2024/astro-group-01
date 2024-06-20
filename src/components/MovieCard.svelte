@@ -30,7 +30,15 @@
 </section>
 
 {#if showModal}
-    <Modal name={name} description={description} categories={categories} streamingServices={streamingServices} lenguage={lenguage} status={status} rating={rating} seasonsAndEpisodes={seasonsAndEpisodes} onClose={closeModal} />
+    <Modal name={name} 
+           description={description} 
+           categories={categories} 
+           streamingServices={streamingServices} 
+           lenguage={lenguage} 
+           status={status} 
+           rating={rating} 
+           seasonsAndEpisodes={seasonsAndEpisodes} 
+           onClose={closeModal} />
 {/if}
 
 <style>
