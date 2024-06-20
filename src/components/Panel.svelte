@@ -3,7 +3,7 @@
     import { parseHtmlToText } from "../assets/utils/parser";
 
     const fetchMovieData = async (id) => {
-        const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
+        const res = await fetch(`https://api.tvmaze.com/shows/${id}?embed=seasons`);
         const data = await res.json();
         return data;
     };
@@ -31,6 +31,7 @@
                 lenguage={movieData.language}
                 status={movieData.status}
                 rating={[10,5,5,6,7,8,9]}
+                seasonsAndEpisodes={movieData["_embedded"].seasons}
                 streamingServices={{
                     "netflix": "https://www.justwatch.com/images/icon/207360008/s100/netflix.{format}/icon.webp",
                     "prime": "https://www.justwatch.com/images/icon/52449861/s100/amazonprimevideo.{format}/icon.webp",

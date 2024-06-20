@@ -10,6 +10,7 @@
     export let lenguage;
     export let status;
     export let rating;
+    export let seasonsAndEpisodes;
 
     // Estado para controlar la visibilidad de la modal
     let showModal = false;
@@ -29,7 +30,7 @@
 </section>
 
 {#if showModal}
-    <Modal name={name} description={description} categories={categories} streamingServices={streamingServices} lenguage={lenguage} status={status} rating={rating} onClose={closeModal} />
+    <Modal name={name} description={description} categories={categories} streamingServices={streamingServices} lenguage={lenguage} status={status} rating={rating} seasonsAndEpisodes={seasonsAndEpisodes} onClose={closeModal} />
 {/if}
 
 <style>

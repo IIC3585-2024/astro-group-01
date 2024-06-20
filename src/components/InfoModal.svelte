@@ -10,6 +10,7 @@
     export let lenguage;
     export let status;
     export let rating;
+    export let seasonsAndEpisodes;
 
     let numbersOfStars = ratingCalculator(rating);
     let numberOfReviews = rating.length
@@ -36,7 +37,13 @@
             {/each}
         </div>
 
-        <p class="description">{description}</p>
+        {#if description.length > 330}
+            <p class="description">{description.substring(0, 330) + '...'}</p>
+        {/if}
+        {#if description.length <= 330}
+            <p class="description">{description}</p>
+        {/if}
+    
 
         <div class="streaming-services">
             {#each Object.keys(streamingServices) as service}
@@ -47,6 +54,12 @@
         <div class="categories">
             <p class="category">{lenguage}</p>
             <p class="category">{status}</p>
+        </div>
+
+        <div class="seasons">
+            {#each seasonsAndEpisodes as season}
+                <p>Temporada {season.number}: {season.episodeOrder} episodios</p>
+            {/each}
         </div>
 
         
@@ -150,6 +163,21 @@
     }
 
     .description{
+        text-align: left;
+    }
+
+    .seasons{
+        margin-top: 20px;
+        display: flex;
+        height: 100px;
+        flex-direction: column;
+        gap: 10px;
+        overflow: scroll;
+    }
+
+    .seasons p{
+        margin: 0;
+        font-weight: 600;
         text-align: left;
     }
 </style>
