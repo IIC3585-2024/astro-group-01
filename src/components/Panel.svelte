@@ -14,7 +14,6 @@
     const loadMoviesData = async () => {
         const promises = ids.map(id => fetchMovieData(id));
         moviesData = await Promise.all(promises);
-        console.log(moviesData);
     };
 
     loadMoviesData();
