@@ -70,7 +70,7 @@
     .modal {
         display: block;
         position: fixed;
-        z-index: 10; /* Ajustado para estar sobre la overlay */
+        z-index: 10; 
         left: 0;
         top: 0;
         width: 100%;
@@ -118,7 +118,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.4);
-        z-index: 9; /* Más bajo que el modal */
+        z-index: 9; 
     }
 
     .categories{
@@ -134,9 +134,9 @@
     }
 
     .streaming-services img {
-        width: 50px; /* Ajusta el tamaño según sea necesario */
-        height: 50px; /* Ajusta el tamaño según sea necesario */
-        margin-right: 10px; /* Espaciado entre las imágenes */
+        width: 50px; 
+        height: 50px; 
+        margin-right: 10px; 
         border-radius: 50%;
         object-fit:cover
     }
