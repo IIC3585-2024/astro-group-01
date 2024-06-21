@@ -1,7 +1,8 @@
 <!-- Modal.svelte -->
 <script>
-  import { fade } from "svelte/transition";
-  import {ratingCalculator} from "../assets/utils/ratingCalculator"
+    import CalificationButton from './CalificationButton.svelte';
+    import { fade } from "svelte/transition";
+    import {ratingCalculator} from "../assets/utils/ratingCalculator"
     export let name;
     export let description;
     export let onClose;
@@ -11,12 +12,13 @@
     export let status;
     export let rating;
     export let seasonsAndEpisodes;
+    export let updateRating;
+    export let undoCalification;
 
-    let numbersOfStars = ratingCalculator(rating);
-    let numberOfReviews = rating.length
-
-
+    $: numbersOfStars = ratingCalculator(rating);
+    $: numberOfReviews = rating.length;
 </script>
+
 
 <div class="overlay" on:click={onClose}  transition:fade={{ delay: 150, duration: 200 }}></div>
 <div class="modal fade" transition:fade={{ delay: 150, duration: 200 }}>
@@ -56,11 +58,17 @@
             <p class="category">{status}</p>
         </div>
 
-        <div class="seasons">
-            {#each seasonsAndEpisodes as season}
-                <p>Temporada {season.number}: {season.episodeOrder} episodios</p>
-            {/each}
+        <div class="container">
+            <div class="seasons">
+                {#each seasonsAndEpisodes as season}
+                    <p>Temporada {season.number}: {season.episodeOrder} episodios</p>
+                {/each}
+    
+            </div>
+            
+            <CalificationButton {name} {updateRating} {undoCalification}></CalificationButton>
         </div>
+        
 
         
     </div>
@@ -179,5 +187,9 @@
         margin: 0;
         font-weight: 600;
         text-align: left;
+    }
+    .container{
+        display: flex;
+        gap: 100px;
     }
 </style>
