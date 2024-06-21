@@ -20,6 +20,12 @@ const movie = {
 	<body>
 		<h1>Astro</h1>
 
-		<MovieCard client:only="svelte" name={movie.name} description={movie.description} poster={movie.poster} categories={movie.categories}></MovieCard>
+		<MovieCard
+			client:only="svelte"
+			name={movie.name}
+			description={movie.description}
+			poster={movie.poster}
+			categories={movie.categories}
+		/>
 	</body>
 </html>

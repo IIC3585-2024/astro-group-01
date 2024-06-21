@@ -1,6 +1,6 @@
 <script>
     import MovieCard from '../components/MovieCard.svelte';
-    import { parseHtmlToText } from "../assets/utils/parser";
+    import { parseHtmlToText } from "../utils/parser";
 
     const fetchMovieData = async (id) => {
         const res = await fetch(`https://api.tvmaze.com/shows/${id}?embed=seasons`);
@@ -27,7 +27,7 @@
                 description={parseHtmlToText(movieData.summary)}
                 poster={movieData.image.original}
                 categories={movieData.genres}
-                lenguage={movieData.language}
+                language={movieData.language}
                 status={movieData.status}
                 rating={[10,5,5,6,7,8,9]}
                 seasonsAndEpisodes={movieData["_embedded"].seasons}
@@ -43,7 +43,7 @@
 </section>
 
 <style>
-    section{
+    section {
         width: 80%;
         margin: auto;
         display: grid;

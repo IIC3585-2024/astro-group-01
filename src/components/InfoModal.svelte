@@ -1,36 +1,35 @@
 <!-- Modal.svelte -->
-<script>
-  import { fade } from "svelte/transition";
-  import {ratingCalculator} from "../assets/utils/ratingCalculator"
-    export let name;
-    export let description;
-    export let onClose;
-    export let categories;
-    export let streamingServices;
-    export let lenguage;
-    export let status;
-    export let rating;
-    export let seasonsAndEpisodes;
+<script lang="ts">
+    import { fade } from "svelte/transition";
+    import {ratingCalculator} from "../utils/ratingCalculator"
+    import type { MouseEventHandler } from "svelte/elements";
+
+    export let name: string;
+    export let description: string;
+    export let onClose: MouseEventHandler<HTMLButtonElement>;
+    export let categories: string[];
+    export let streamingServices: {[key: string]: string} = {};
+    export let language: string = "English";
+    export let status: string = "Finished";
+    export let rating: number[] = [];
+    export let seasonsAndEpisodes: {number: string, episodeOrder: number}[] = [];
 
     let numbersOfStars = ratingCalculator(rating);
     let numberOfReviews = rating.length
-
-
 </script>
 
-<div class="overlay" on:click={onClose}  transition:fade={{ delay: 150, duration: 200 }}></div>
+<button class="overlay" on:click={onClose}  transition:fade={{ delay: 150, duration: 200 }}></button>
 <div class="modal fade" transition:fade={{ delay: 150, duration: 200 }}>
     <div class="modal-content">
-        <span class="close" on:click={onClose}>&times;</span>
-        
+        <button class="close" on:click={onClose}>&times;</button>
+
         <div class="header">
             <h2>{name}</h2>
-        
             <div class="star">
                 {numbersOfStars} ★ {`( ${numberOfReviews} )`}
             </div>
         </div>
-        
+
         <div class="categories">
             {#each categories as category}
                 <p class="category">{category}</p>
@@ -43,7 +42,6 @@
         {#if description.length <= 330}
             <p class="description">{description}</p>
         {/if}
-    
 
         <div class="streaming-services">
             {#each Object.keys(streamingServices) as service}
@@ -52,7 +50,7 @@
         </div>
 
         <div class="categories">
-            <p class="category">{lenguage}</p>
+            <p class="category">{language}</p>
             <p class="category">{status}</p>
         </div>
 
@@ -61,8 +59,6 @@
                 <p>Temporada {season.number}: {season.episodeOrder} episodios</p>
             {/each}
         </div>
-
-        
     </div>
 </div>
 
@@ -70,7 +66,7 @@
     .modal {
         display: block;
         position: fixed;
-        z-index: 10; 
+        z-index: 10;
         left: 0;
         top: 0;
         width: 100%;
@@ -118,7 +114,7 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.4);
-        z-index: 9; 
+        z-index: 9;
     }
 
     .categories{
@@ -134,9 +130,9 @@
     }
 
     .streaming-services img {
-        width: 50px; 
-        height: 50px; 
-        margin-right: 10px; 
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
         border-radius: 50%;
         object-fit:cover
     }
