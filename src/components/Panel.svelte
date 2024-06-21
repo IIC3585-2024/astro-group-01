@@ -7,7 +7,7 @@
     const fetchMovieData = async (id) => {
         const res = await fetch(`https://api.tvmaze.com/shows/${id}?embed=seasons`);
         const data = await res.json();
-        agregar(data.name, false)
+        agregar(data.name, [false, 0])
         assingExtraData(data)
         return data;
     };

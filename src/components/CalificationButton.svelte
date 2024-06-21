@@ -7,7 +7,7 @@
     export let name;
     let calification = 0;
 
-    let rated = obtenerValor(name);
+    let rated = obtenerValor(name)[0];
     let calificado = rated === true;
 
 
@@ -22,19 +22,20 @@
     };
 
     const submitCalification = () => {
-        actualizarValor(name, true);
-        updateRating(calification);
+        actualizarValor(name, [true, calification]);
+        console.log(obtenerValor(name))
+        updateRating(obtenerValor(name)[1]);
         rated = true; // Actualiza la variable reactiva
     };
 
     const handleUndoCalification = () => {
-        actualizarValor(name, false);
-        undoCalification(calification);
+        undoCalification(obtenerValor(name)[1]);
+        actualizarValor(name, [false, 0]);
         rated = false;
     };
 
     const unsubscribe = ratingStore.subscribe(() => {
-        rated = obtenerValor(name);
+        rated = obtenerValor(name)[0];
         calificado = rated === true;
     });
 
@@ -47,7 +48,7 @@
     <div class="increment-decrement">
         {#if calificado}
             <button disabled on:click={DecrementCalification}>Lower</button>
-            <div>{calification}</div>
+            <div>{obtenerValor(name)[1]}</div>
             <button disabled on:click={IncrementCalification}>Upper</button>
         {:else}
             <button on:click={DecrementCalification}>Lower</button>
