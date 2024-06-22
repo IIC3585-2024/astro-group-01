@@ -3,6 +3,7 @@
     import CalificationButton from './CalificationButton.svelte';
     import { fade } from "svelte/transition";
     import {ratingCalculator} from "../assets/utils/ratingCalculator"
+    import Comments from './Comments.svelte';
     export let name;
     export let description;
     export let onClose;
@@ -14,6 +15,11 @@
     export let seasonsAndEpisodes;
     export let updateRating;
     export let undoCalification;
+    export let comments
+
+    let goToComments = false;
+
+    const toggleComments = () => goToComments = !goToComments
 
     $: numbersOfStars = ratingCalculator(rating);
     $: numberOfReviews = rating.length;
@@ -33,6 +39,7 @@
             </div>
         </div>
         
+        {#if !goToComments}
         <div class="categories">
             {#each categories as category}
                 <p class="category">{category}</p>
@@ -66,11 +73,17 @@
     
             </div>
             
-            <CalificationButton {name} {updateRating} {undoCalification}></CalificationButton>
+            <div>
+                <CalificationButton {name} {updateRating} {undoCalification}></CalificationButton>
+                <button on:click={toggleComments}>Go to comments</button>
+            </div>
         </div>
-        
+        {/if}
 
-        
+
+        {#if goToComments}
+            <Comments {name} {toggleComments} {comments}></Comments>
+        {/if}
     </div>
 </div>
 

@@ -35,6 +35,7 @@
                 status={movieData.status}
                 rating={movieData.rating}
                 seasonsAndEpisodes={movieData["_embedded"].seasons}
+                comments={movieData.comments}
                 streamingServices={{
                     "netflix": "https://www.justwatch.com/images/icon/207360008/s100/netflix.{format}/icon.webp",
                     "prime": "https://www.justwatch.com/images/icon/52449861/s100/amazonprimevideo.{format}/icon.webp",

@@ -1,6 +1,15 @@
 const localData = [
   {
     rating: [10, 5, 5, 6, 7, 8, 9],
+    comments: [
+      { user: "Anonimo 1", comment: "Wow this is amazing!!!" },
+      { user: "Anonimo 2", comment: "Wow this is Legendary!!" },
+      { user: "Anonimo 2", comment: "Wow this is Legendary!!" },
+      { user: "Anonimo 2", comment: "Wow this is Legendary!!" },
+      { user: "Anonimo 2", comment: "Wow this is Legendary!!" },
+      { user: "Anonimo 2", comment: "Wow this is Legendary!!" },
+      { user: "Anonimo 2", comment: "Wow this is Legendary!!" },
+    ],
   },
 
   {
@@ -38,4 +47,5 @@ const localData = [
 export function assingExtraData(data) {
   console.log("Entra a asignar");
   data["rating"] = localData[data.id - 1].rating;
+  data["comments"] = localData[data.id - 1].comments;
 }

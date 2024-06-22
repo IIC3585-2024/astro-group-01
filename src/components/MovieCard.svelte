@@ -11,6 +11,7 @@
     export let status;
     export let rating;
     export let seasonsAndEpisodes;
+    export let comments;
 
     // Estado para controlar la visibilidad de la modal
     let showModal = false;
@@ -55,6 +56,7 @@
            rating={rating} 
            seasonsAndEpisodes={seasonsAndEpisodes} 
            onClose={closeModal} 
+           {comments}
            {updateRating}
            {undoCalification}/>
 {/if}
