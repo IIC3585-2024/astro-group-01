@@ -1,7 +1,7 @@
 <script>
     import MovieCard from '../components/MovieCard.svelte';
-    import { parseHtmlToText } from "../assets/utils/parser";
-    import {assingExtraData} from "../assets/utils/assingExtraData"
+    import { parseHtmlToText } from "../utils/parser";
+    import { assingExtraData } from "../assets/utils/assingExtraData"
     import { ratingStore, agregar, existe, actualizarValor } from './../assets/utils/ratingStore.js';
 
     const fetchMovieData = async (id) => {
@@ -31,7 +31,7 @@
                 description={parseHtmlToText(movieData.summary)}
                 poster={movieData.image.original}
                 categories={movieData.genres}
-                lenguage={movieData.language}
+                language={movieData.language}
                 status={movieData.status}
                 rating={movieData.rating}
                 seasonsAndEpisodes={movieData["_embedded"].seasons}
@@ -47,7 +47,7 @@
 </section>
 
 <style>
-    section{
+    section {
         width: 80%;
         margin: auto;
         display: grid;
