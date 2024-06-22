@@ -1,10 +1,14 @@
 <script>
     import MovieCard from '../components/MovieCard.svelte';
     import { parseHtmlToText } from "../utils/parser";
+    import { assingExtraData } from "../assets/utils/assingExtraData"
+    import { ratingStore, agregar, existe, actualizarValor } from './../assets/utils/ratingStore.js';
 
     const fetchMovieData = async (id) => {
         const res = await fetch(`https://api.tvmaze.com/shows/${id}?embed=seasons`);
         const data = await res.json();
+        agregar(data.name, [false, 0])
+        assingExtraData(data)
         return data;
     };
 
@@ -29,7 +33,7 @@
                 categories={movieData.genres}
                 language={movieData.language}
                 status={movieData.status}
-                rating={[10,5,5,6,7,8,9]}
+                rating={movieData.rating}
                 seasonsAndEpisodes={movieData["_embedded"].seasons}
                 streamingServices={{
                     "netflix": "https://www.justwatch.com/images/icon/207360008/s100/netflix.{format}/icon.webp",

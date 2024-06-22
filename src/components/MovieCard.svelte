@@ -19,6 +19,19 @@
     function openModal() { showModal = true }
 
     function closeModal() { showModal = false }
+
+    const updateRating = (newRating) => {
+        rating = [...rating, newRating];
+    };
+
+    const undoCalification = (calification) => {
+        let aux = [...rating]
+        let index = aux.indexOf(calification);
+        if (index !== -1) {
+            aux.splice(index, 1);
+            rating = aux;
+        }
+    };
 </script>
 
 <section>
@@ -38,6 +51,8 @@
         rating={rating}
         seasonsAndEpisodes={seasonsAndEpisodes}
         onClose={closeModal}
+        {updateRating}
+        {undoCalification}
     />
 {/if}
 

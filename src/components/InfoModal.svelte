@@ -13,9 +13,11 @@
     export let status: string = "Finished";
     export let rating: number[] = [];
     export let seasonsAndEpisodes: {number: string, episodeOrder: number}[] = [];
+    export let updateRating;
+    export let undoCalification;
 
-    let numbersOfStars = ratingCalculator(rating);
-    let numberOfReviews = rating.length
+    $: numbersOfStars = ratingCalculator(rating);
+    $: numberOfReviews = rating.length;
 </script>
 
 <button class="overlay" on:click={onClose}  transition:fade={{ delay: 150, duration: 200 }}></button>
@@ -54,10 +56,15 @@
             <p class="category">{status}</p>
         </div>
 
-        <div class="seasons">
-            {#each seasonsAndEpisodes as season}
-                <p>Temporada {season.number}: {season.episodeOrder} episodios</p>
-            {/each}
+        <div class="container">
+            <div class="seasons">
+                {#each seasonsAndEpisodes as season}
+                    <p>Temporada {season.number}: {season.episodeOrder} episodios</p>
+                {/each}
+    
+            </div>
+            
+            <CalificationButton {name} {updateRating} {undoCalification}></CalificationButton>
         </div>
     </div>
 </div>
@@ -175,5 +182,9 @@
         margin: 0;
         font-weight: 600;
         text-align: left;
+    }
+    .container{
+        display: flex;
+        gap: 100px;
     }
 </style>
