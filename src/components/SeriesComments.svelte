@@ -42,10 +42,13 @@
         margin: 10px;
         padding: 10px;
     }
+    .star{
+        color: gold;
+    }
 </style>
 
 <div class="series-pop">
-    <p>Rating: {rating} ({ratingsCount})</p>
+    <p>Rating: <span class="star">{rating} ★ ({ratingsCount})</span></p>
     <p>Comments:</p>
     <div class="comments">
         {#if comments.length === 0}

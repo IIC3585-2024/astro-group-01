@@ -7,20 +7,35 @@ const { user }: any = Astro.locals;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        background-color: #333;
-        color: white;
+        background-color: hsl(224, 14%, 16%);
+        color: #B3C7FF;
         width: 100%;
     }
 
     .nav-links {
         display: flex;
         justify-content: space-between;
+        gap: 10px;
         align-items: center;
+        text-decoration: none;
+        margin-left: 20px;
+        padding: 10px;
     }
 
     .nav-links a {
-        color: white;
+        color: #B3C7FF;
         text-decoration: none;
+        font-weight: 600;
+        transition: ease 0.2s;
+        padding: 50px 50px;
+        border-radius: 2px;
+    }
+
+    .nav-links a:hover {
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        scale: 1.05;
     }
 
     .nav-links button {
@@ -29,10 +44,6 @@ const { user }: any = Astro.locals;
         border: none;
         cursor: pointer;
         font-size: 15px;
-    }
-
-    .nav-links a:hover, .nav-links button:hover {
-        text-decoration: underline;
     }
 
     .nav-links p {

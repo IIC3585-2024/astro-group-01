@@ -20,7 +20,32 @@ series.set(seriesData);
         text-align: center;
         margin: 2rem 0;
         font-size: 2rem;
+        color: #fff;
     }
+
+    header{
+        text-align: center;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 40px;
+    }
+
+    header a{
+        background-color: hsl(224, 100%, 85%);
+        padding: 10px 20px;
+        font-weight: 600;
+        color: #232328;
+        transition: ease 0.2s;
+    }
+
+    header a:hover{
+        scale: 1.05;
+        box-shadow: 0px 0px 5px hsl(224, 100%, 85%);
+    }
+
+    p{
+		color: #C1C3C8;
+	}
 
     .series-catalog {
         display: flex;
@@ -66,8 +91,12 @@ series.set(seriesData);
 
 <Layout title="Catalog - AstroFilms">
     <section>
-        <h1>Catalog</h1>
-        <a href="/series/new">Add new series</a>
+        <header>
+            <h1>AstroFilms Catalog</h1>
+            <p>In this section you can find information about your favorite movies, as well as comments made by other viewers. You can also add add new movies if you want.</p>
+            <a href="/series/new">Add new series</a>
+        </header>
+        
         <div class="series-catalog">
             {seriesData.map((s) => (
                 <a href={`/series/${s.id}`}>
