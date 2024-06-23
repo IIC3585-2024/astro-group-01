@@ -1,0 +1,60 @@
+---
+import Layout from "../../layouts/layout.astro";
+import SeriesComments from "../../components/SeriesComments.svelte";
+
+const id = Number(Astro.params.id);
+let seriesInfo: any;
+
+try {
+    const response = await fetch(`${Astro.url.origin}/api/series/${id}`);
+    if (!response.ok) throw new Error(response.statusText);
+    seriesInfo = await response.json();
+} catch (error) {
+    console.error('Error fetching series:', error);
+    Astro.redirect('/');
+}
+---
+
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<Layout title={`${seriesInfo.name} - AstroFilms`}>
+    <section>
+        <h1>{seriesInfo.name}</h1>
+        <img src={seriesInfo.poster || "/unavailable.png"} alt={seriesInfo.name} />
+        <p>{seriesInfo.description}</p>
+        <p>Streaming service: {seriesInfo.streamingService}</p>
+        <p>Episodes per season:</p>
+        <div class="episode-count">
+            {seriesInfo.episodesPerSeason.map((episodes: number, index: number) => (
+                <p>Season {index + 1}: {episodes}</p>
+            ))}
+        </div>
+        <p>Category: {seriesInfo.category}</p>
+        <SeriesComments
+            client:only="svelte"
+            astroOrigin={Astro.url.origin}
+            currentUser={Astro.locals.user}
+            seriesId={id}
+            ratings={seriesInfo.ratings}
+            comments={seriesInfo.comments}
+        />
+    </section>
+</Layout>

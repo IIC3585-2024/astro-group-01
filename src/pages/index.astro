@@ -1,31 +1,20 @@
 ---
-import  MovieCard  from "../components/MovieCard.svelte";
-
-const movie = {
-  name: 'Inception',
-  description: 'A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.',
-  categories: ["Acción", "Aventura", "Sci-fi"],
-  poster: 'https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg'
-};
+import Layout from "../layouts/layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
+<style>
+	h1 {
+        text-align: center;
+        margin: 2rem 0;
+        font-size: 2rem;
+    }
+</style>
 
-		<MovieCard
-			client:only="svelte"
-			name={movie.name}
-			description={movie.description}
-			poster={movie.poster}
-			categories={movie.categories}
-		/>
-	</body>
-</html>
+<Layout title="AstroFilms">
+	<section>
+		<h1>Welcome to Astro</h1>
+		<p>
+			This is a simple Astro app with authentication. You can sign up, log in, and log out.
+		</p>
+	</section>
+</Layout>
