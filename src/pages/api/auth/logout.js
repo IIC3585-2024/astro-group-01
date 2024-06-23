@@ -2,7 +2,7 @@ import { lucia } from "../../../lib/auth";
 
 export async function POST(context) {
 	if (!context.locals.session) {
-		return new Response(null, {
+		return new Response(JSON.stringify({ error: "No session found" }), {
 			status: 401
 		});
 	}

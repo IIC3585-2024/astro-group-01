@@ -10,7 +10,7 @@ export async function POST(context) {
     const existentName = usersData.filter((user) => user.username.toLowerCase() === username.toLowerCase());
 
     if (existentName.length > 0) {
-		return new Response("Username already exists", {
+		return new Response(JSON.stringify({ error: "Username already exists" }), {
 			status: 400
 		});
 	}
@@ -21,13 +21,17 @@ export async function POST(context) {
 		username.length > 31 ||
 		!/^[a-z0-9_-]+$/.test(username)
 	) {
-		return new Response("Invalid username", {
+		return new Response(JSON.stringify({
+			error: "Invalid username: must be 3-31 characters long and alphanumeric with '_' or '-'",
+		}), {
 			status: 400
 		});
 	}
 	const password = formData.get("password");
 	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
-		return new Response("Invalid password", {
+		return new Response(JSON.stringify({
+			error: "Invalid password: must be 6-255 characters long",
+		}), {
 			status: 400
 		});
 	}
@@ -41,7 +45,9 @@ export async function POST(context) {
 			password,
 		});
 	} catch (error) {
-		return new Response(`Error creating user: ${error.message}`, {
+		return new Response(JSON.stringify({
+			error: `Error creating user: ${error.message}`,
+		}), {
 			status: 500
 		});
 	}
