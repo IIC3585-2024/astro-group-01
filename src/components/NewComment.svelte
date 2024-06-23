@@ -47,14 +47,55 @@
 </script>
 
 <style>
+    .new-comment{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    textarea{
+        resize: none;
+        width: 100%;
+    }
+
+    .inputs{
+        margin-top: 0;
+        display: flex;
+        gap: 20px;
+    }
+
+    p{
+        margin: 0;
+    }
+
+    button {
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        color: #232328;
+        border: none;
+        background-color: hsl(224, 100%, 85%);
+        width: 70%;
+        margin: auto;
+        font-weight: 600;
+        transition: ease 0.2s;
+    }
+
+    button:hover {
+        cursor: pointer;
+        scale: 1.05;
+        box-shadow: 0px 0px 5px hsl(224, 100%, 85%);
+    }
 
 </style>
 
 <div class="new-comment">
     {#if currentUser}
         <p>Post a comment:</p>
-        <textarea bind:value={messageInput} placeholder="Message" />
-        <input type="number" bind:value={ratingInput} placeholder="Rating" min="1" max="10" />
+        <div class="inputs">
+            <textarea bind:value={messageInput} placeholder="Message" />
+            <input type="number" bind:value={ratingInput} placeholder="Rating" min="1" max="10" />
+        </div>
         <button on:click={handleNewComment}>Post Comment</button>
     {:else}
         <p>Please log in to post a comment</p>
