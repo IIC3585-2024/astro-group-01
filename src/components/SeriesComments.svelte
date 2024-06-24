@@ -25,19 +25,25 @@
         margin-bottom: 1rem;
     }
 
+    .no-comments {
+        color: #c1c3c8;
+        width: 100%;
+        text-align: center;
+    }
+
     .series-pop {
         display: flex;
         flex-direction: column;
         margin: 10px;
         padding: 10px;
         width: 80%;
-        text-align: center;  
+        text-align: center;
     }
 
     .series-pop p{
         margin-bottom: 5px;
         margin-top: 5px;
-        
+
     }
 
     .comments {
@@ -52,7 +58,7 @@
     }
     .comment p {
         margin: 0;
-        margin-bottom: 2px;
+        margin-top: 0.5rem;
         color: #c1c3c8;
         font-size: medium;
     }
@@ -66,7 +72,7 @@
     <p>Comments:</p>
     <div class="comments">
         {#if comments.length === 0}
-            <p>No comments yet</p>
+            <p class="no-comments">No comments yet</p>
         {:else}
             {#each comments as comment}
                 <div class="comment">

@@ -91,7 +91,7 @@
 
 <div class="new-comment">
     {#if currentUser}
-        <p>Post a comment:</p>
+        <p>Post a comment and rating:</p>
         <div class="inputs">
             <textarea bind:value={messageInput} placeholder="Message" />
             <input type="number" bind:value={ratingInput} placeholder="Rating" min="1" max="10" />

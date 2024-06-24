@@ -20,7 +20,7 @@ series.set(seriesData);
         text-align: center;
         margin: 2rem 0;
         font-size: 2rem;
-        color: #fff;
+		color: hsl(224, 100%, 85%);
     }
 
     header{
@@ -93,10 +93,10 @@ series.set(seriesData);
     <section>
         <header>
             <h1>AstroFilms Catalog</h1>
-            <p>In this section you can find information about your favorite movies, as well as comments made by other viewers. You can also add add new movies if you want.</p>
+            <p>In this section you can find information about your favorite movies, as well as comments made by other viewers. You can also add add new movies if you want.</p><br/>
             <a href="/series/new">Add new series</a>
         </header>
-        
+
         <div class="series-catalog">
             {seriesData.map((s) => (
                 <a href={`/series/${s.id}`}>

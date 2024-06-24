@@ -15,35 +15,31 @@ const { user }: any = Astro.locals;
     .nav-links {
         display: flex;
         justify-content: space-between;
-        gap: 10px;
+        gap: 1rem;
         align-items: center;
         text-decoration: none;
-        margin-left: 20px;
-        padding: 10px;
+        padding: 0.5rem;
     }
 
-    .nav-links a {
+    .nav-links a, .nav-links button {
         color: #B3C7FF;
         text-decoration: none;
         font-weight: 600;
         transition: ease 0.2s;
         padding: 50px 50px;
         border-radius: 2px;
+        background-color: transparent;
+        border: none;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover, .nav-links button:hover {
         cursor: pointer;
         text-decoration: none;
         color: #fff;
         scale: 1.05;
-    }
-
-    .nav-links button {
-        background-color: #333;
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-size: 15px;
     }
 
     .nav-links p {
