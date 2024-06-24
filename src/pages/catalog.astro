@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/layout.astro"
-import { series } from "../lib/series"
+import SeriesCatalog from "../components/SeriesCatalog.svelte";
 
 let seriesData: any[] = [];
 
@@ -11,8 +11,6 @@ try {
 } catch (error) {
     console.error('Error fetching series:', error);
 }
-
-series.set(seriesData);
 ---
 
 <style scoped>
@@ -36,6 +34,7 @@ series.set(seriesData);
         font-weight: 600;
         color: #232328;
         transition: ease 0.2s;
+        border-radius: 0.4rem;
     }
 
     header a:hover{
@@ -67,20 +66,6 @@ series.set(seriesData);
         border-radius: 0 0 10px 10px;
     }
 
-    a {
-        width: 200px;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 10px;
-        transition: ease 0.2s;
-        box-shadow: 0px 0px 30px #000;
-    }
-
-    a:hover {
-        scale: 1.05;
-        cursor: pointer;
-    }
-
     img {
         width: 100%;
         height: 100%;
@@ -96,16 +81,6 @@ series.set(seriesData);
             <p>In this section you can find information about your favorite movies, as well as comments made by other viewers. You can also add add new movies if you want.</p><br/>
             <a href="/series/new">Add new series</a>
         </header>
-
-        <div class="series-catalog">
-            {seriesData.map((s) => (
-                <a href={`/series/${s.id}`}>
-                    {s.poster
-                    ? <img src={s.poster} alt={s.name}/>
-                    : <img src="/unavailable.png" alt={s.name}/> }
-                    <p class="series-title">{s.name}</p>
-                </a>
-            ))}
-        </div>
+        <SeriesCatalog client:only="svelte" seriesList={seriesData} />
     </section>
 </Layout>
