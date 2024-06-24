@@ -79,7 +79,7 @@ try {
         <header>
             <h1>AstroFilms Catalog</h1>
             <p>In this section you can find information about your favorite movies, as well as comments made by other viewers. You can also add add new movies if you want.</p><br/>
-            <a href="/series/new">Add new series</a>
+            {Astro.locals.user ? <a href="/series/new">Add new series</a> : null}
         </header>
         <SeriesCatalog client:only="svelte" seriesList={seriesData} />
     </section>
